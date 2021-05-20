@@ -58,7 +58,7 @@ const updateUser = async (request, response) => {
 		if (!request.body.username) {
 			return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values are not valid!!' })
 		}
-		const databaseResponse = await UserModel.findOneAndUpdate(request.params.userid, data, { new: true })
+		const databaseResponse = await UserModel.findByIdAndUpdate(request.params.userid, data, { new: true })
 		response.status(StatusCode.OK).send(databaseResponse)
 
 	} catch (error) {
@@ -66,11 +66,24 @@ const updateUser = async (request, response) => {
 	}
 }
 
+const getUserWithQuery = async (request, response) => {
+
+	try {
+		const databaseResponse = await UserModel.find({ username: request.query.name })
+
+		databaseResponse.length !== 0
+			? response.status(StatusCode.OK).send(databaseResponse)
+			: response.status(StatusCode.NOT_FOUND).send({ message: `Could not find user ${request.query.name}` })
+	} catch (error) {
+		response.status(StatusCode.INTERNAL_SERVER_ERROR).send({ message: error.message })
+	}
+}
 
 export default {
 	createUser,
 	getAllUsers,
 	getUserByID,
 	deleteUserByID,
-	updateUser
+	updateUser,
+	getUserWithQuery
 }

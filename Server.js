@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 import UserRoutes from './src/routes/User.Routes.js'
@@ -7,6 +8,7 @@ import Middlewares from './src/middlewares/Middlewares.js'
 
 const application = express()
 application.use(express.json())
+application.use(cors({ credential: true}))
 application.use(morgan('common'))
 application.use(helmet())
 
@@ -28,3 +30,5 @@ Configurations.connectToDatabase()
 application.get('/order', isOrderPaidFor, (request, response) => {
 	response.send('ORDER ACCEPTED: ' + Math.random())
 })*/
+
+export default application
