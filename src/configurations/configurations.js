@@ -20,7 +20,7 @@ const connectToPort = async (application) => {
 const connectToDatabase = async () => {
 	//const DATABASE_URL = ENVIRONMENT === 'DEVELOPMENT' ? DEV_DATABASE_URL : PROD_DATABASE_URL
 	try {
-		await mongoose.connect("mongodb+srv://jsfullstack-version-jl:<PnwaZR0uGjVOoLp2>@jsfullstack-version-jl.usc9b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
+		await mongoose.connect("mongodb+srv://jsfullstack-version-jl:PnwaZR0uGjVOoLp2@jsfullstack-version-jl.usc9b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", 
 			{ 
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
