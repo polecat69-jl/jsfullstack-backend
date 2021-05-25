@@ -8,9 +8,9 @@
     "test": "mocha 'tests/**'",
     "dev": "npx nodemon server.js",
     "deploy": "git push heroku master",
-    "install-ehandeljsf": "cd ehandeljsf && npm install",
-    "build-ehandeljsf": "cd ehandeljsf && npm run build",
-    "heroku-postbuild": "npm run install ehandeljsf && npm run build"
+    "install-jsfullstackb": "cd jsfullstack-backend && npm install",
+    "build-jsfullstackb": "cd jsfullstack-backend && npm run build",
+    "heroku-postbuild": "npm run install jsfullstack-backend && npm run build"
   },
   "keywords": [
     "RestAPI"
