@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha 'tests/**'",
     "start": "node Server.js",
-    "dev": "npx nodemon server.js",
+    "dev": "npx nodemon Server.js",
     "deploy": "git push heroku master",
     "install-jsfullstackb": "cd jsfullstack-backend && npm install",
     "build-jsfullstackb": "cd jsfullstack-backend && npm run build",
