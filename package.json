@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha 'tests/**'",
+    "start": "node Server.js",
     "dev": "npx nodemon server.js",
     "deploy": "git push heroku master",
     "install-jsfullstackb": "cd jsfullstack-backend && npm install",
