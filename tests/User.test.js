@@ -2,6 +2,7 @@ import Chai from 'chai'
 import ChaiHTTP from 'chai-http'
 import { describe, it as test }  from 'mocha'
 import application from '../Server.js'
+import StatusCode from '../src/configurations/StatusCode.js'
 
 Chai.should()
 Chai.use(ChaiHTTP)
@@ -57,9 +58,9 @@ const getUserWithQuery = () => {
 
 	test('GET User with Query', done => {
 		Chai.request(application)
-			.get('/search/user?name=Klara')    
+			.get('/search/user?name=jonas')    
 			.end((request, response) => {
-				response.should.have.a.status(200)                
+				response.should.have.a.status(StatusCode.OK)                
 				done()
 			})
 	})
@@ -68,7 +69,7 @@ const getUserWithQuery = () => {
 const deleteUserByID = () => {
 	test('DELETE User from Database with UserID', done => {
 		Chai.request(application)
-			.delete('/user/60a6237edc06d73ec0d6fcdd')
+			.delete('/user/60abadbe28cda852d0ee2111')
 			.end((request, response) => {
 				response.should.have.a.status(200)
 				done()
@@ -78,34 +79,26 @@ const deleteUserByID = () => {
 
 const updateUser = () => {
 
-	const randomString = Math.random().toString(36).substring(7)
-	const randomString2 = Math.random().toString(36).substring(7)
-
 	const mockData = {
-		username: randomString,
-		password: randomString2
+		username: randomString
 	}
 
 	test('PUT Update user in database', done => {
 		Chai.request(application)
-			.put('/updateuser/60a62424dcafc8401cdeb09a')
+			.put('/updateuser/60a620206f816f5c3c7ca7ea')
 			.send(mockData)
 			.end((request, response) => {
-				response.should.have.a.status(200)
-                response.body.should.be.a('object')
-				response.body.should.have.property('username').eq(mockData.username)
-				response.body.should.have.property('password').eq(mockData.password)
+				response.body.should.be.a('object')
 				done()
 			})
 	})
 }
 
-
 describe('TESTING USER_API ROUTE', () => {
-	testingNonExistentRoute(),
-	GetAllUsers(),
-	CreateUser(),
-	updateUser(),
-	getUserWithQuery(),
+	testingNonExistentRoute()
+	GetAllUsers()
+	CreateUser()
+	updateUser()
+	getUserWithQuery()
 	deleteUserByID()
 })

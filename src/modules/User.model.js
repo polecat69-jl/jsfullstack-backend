@@ -12,9 +12,7 @@ const userSchema = Schema({
 		maxlength: [20, 'USERNAME TO LONG MAX 20 CHARACTERS']
 	},
 	password: {
-		type: String,
-		required: true,
-		allowNull: false       
+		type: String   
 	}
 }, {timestamps: true })
 

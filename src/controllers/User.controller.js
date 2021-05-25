@@ -3,6 +3,7 @@ import StatusCode from '../configurations/StatusCode.js'
 import { request, response } from 'express'
 
 const createUser = async (request, response) => {
+
 	const user = new UserModel({
 		username: request.body.username,
 		password: request.body.password
@@ -50,10 +51,10 @@ const deleteUserByID = async (request, response) => {
 
 const updateUser = async (request, response) => {
 
-	const data = {
+	const data = new UserModel({
 		username: request.body.username,
 		password: request.body.password
-	}
+	})
 	try {
 		if (!request.body.username) {
 			return response.status(StatusCode.BAD_REQUEST).send({ message: 'Empty values are not valid!!' })
